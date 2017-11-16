@@ -5,6 +5,9 @@
  */
 package com.pwrlab.przychodniajdbc;
 
+import java.sql.Connection;
+import repository.PacjentRepository;
+
 /**
  *
  * @author Olaf
@@ -14,6 +17,10 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Creates new form MainWindow
      */
+    DBConnection dbHandler = DBConnection.getInstance();
+    Connection connection = dbHandler.getConnection();
+    PacjentRepository repo = new PacjentRepository();
+
     public MainWindow() {
         initComponents();
     }
@@ -40,6 +47,7 @@ public class MainWindow extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(500, 500));
 
         jButton1.setText("Pacjent przyszedł");
 
@@ -53,6 +61,11 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         jButton4.setText("Wyświetl pacjentów");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Nowy lekarz");
 
@@ -132,12 +145,18 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
+        PacjentAdd pacjentAddWindow = new PacjentAdd();
+        pacjentAddWindow.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        PacjentWyswietl pw = new PacjentWyswietl();
+        pw.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,6 +191,7 @@ public class MainWindow extends javax.swing.JFrame {
                 new MainWindow().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

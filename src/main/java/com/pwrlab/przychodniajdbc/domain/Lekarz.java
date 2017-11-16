@@ -11,4 +11,9 @@ package com.pwrlab.przychodniajdbc.domain;
  */
 public class Lekarz {
     
+    private int id;
+    private String imie;
+    private String nazwisko;
+    private int limitPrzyjec;
+    
 }

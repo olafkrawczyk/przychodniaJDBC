@@ -15,7 +15,7 @@ public class DBConnection {
     
     private static String DB_URL = "jdbc:sqlite:C:/sqlite/db/przychodnia.db";
     private static DBConnection instance = null;
-    private Connection connection = null;
+    private static Connection connection = null;
     
     
     
@@ -29,7 +29,7 @@ public class DBConnection {
       }
     }
     
-    public DBConnection getInstance() {
+    public static DBConnection getInstance() {
         if (instance == null) {
             instance = new DBConnection();
             return instance;
@@ -37,7 +37,7 @@ public class DBConnection {
         return instance;
     }
     
-    public Connection getConnection() {
-        return this.connection;
+    public static Connection getConnection() {
+        return connection;
     }
 }

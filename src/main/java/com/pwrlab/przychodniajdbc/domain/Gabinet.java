@@ -35,7 +35,7 @@ public class Gabinet {
 
     @Override
     public String toString() {
-        return id + " - " + numerPokoju;
+        return id + ". " + numerPokoju;
     }
     
     

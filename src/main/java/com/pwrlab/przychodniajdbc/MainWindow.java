@@ -33,11 +33,11 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
     }
-    
+
     private void initList() {
-        jList1.setModel(new AbstractListModel<Wizyta>(){
+        jList1.setModel(new AbstractListModel<Wizyta>() {
             List<Wizyta> wizyty = repoWiz.selectAll();
-         
+
             @Override
             public int getSize() {
                 return wizyty.size();
@@ -81,8 +81,18 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         jButton1.setText("Pacjent przyszedł");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Pacjent nie przyszedł");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Nowy pacjent");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -223,7 +233,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        
+        initList();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -264,6 +274,16 @@ public class MainWindow extends javax.swing.JFrame {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowClosed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        repoWiz.setPacjentPrzyszedl(jList1.getSelectedValue(), true);
+        initList();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        repoWiz.setPacjentPrzyszedl(jList1.getSelectedValue(), false);
+        initList();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

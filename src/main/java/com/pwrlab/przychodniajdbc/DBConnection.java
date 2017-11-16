@@ -6,29 +6,35 @@
 package com.pwrlab.przychodniajdbc;
 
 import java.sql.*;
+import java.util.Properties;
+import org.sqlite.SQLiteConfig;
+import org.sqlite.SQLiteConfig.Pragma;
 
 /**
  *
  * @author Olaf
  */
 public class DBConnection {
-    
+
     private static String DB_URL = "jdbc:sqlite:C:/sqlite/db/przychodnia.db";
     private static DBConnection instance = null;
     private static Connection connection = null;
-    
-    
-    
+
     private DBConnection() {
         try {
-         Class.forName("org.sqlite.JDBC");
-         connection = DriverManager.getConnection(DB_URL);
-      } catch ( Exception e ) {
-         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-         System.exit(0);
-      }
+            Class.forName("org.sqlite.JDBC");
+
+            SQLiteConfig sqLiteConfig = new SQLiteConfig();
+            Properties properties = sqLiteConfig.toProperties();
+            properties.setProperty(Pragma.DATE_STRING_FORMAT.pragmaName, "yyyy-MM-dd HH:mm:ss");
+
+            connection = DriverManager.getConnection(DB_URL, properties);
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
     }
-    
+
     public static DBConnection getInstance() {
         if (instance == null) {
             instance = new DBConnection();
@@ -36,7 +42,7 @@ public class DBConnection {
         }
         return instance;
     }
-    
+
     public static Connection getConnection() {
         return connection;
     }

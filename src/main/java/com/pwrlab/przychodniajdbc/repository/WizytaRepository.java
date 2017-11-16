@@ -30,6 +30,7 @@ public class WizytaRepository {
     private Connection connection;
     private PacjentRepository pacjentRepo = new PacjentRepository();
     private LekarzeRepository lekarzeRepo = new LekarzeRepository();
+    private GabinetRepository gabinetRepo = new GabinetRepository();
 
     public WizytaRepository() {
         this.connection = DBConnection.getConnection();
@@ -63,6 +64,7 @@ public class WizytaRepository {
                 wizyta.setPacjent(pacjentRepo.selectById(rs.getInt("id_pacjent")));
                 wizyta.setLekarz(lekarzeRepo.selectById(rs.getInt("id_lekarz")));
                 wizyta.setData(rs.getDate("data"));
+                wizyta.setPacjentPrzyszedl(rs.getBoolean("przyszedl"));
                 result.add(wizyta);
             }
             return result;
@@ -86,6 +88,7 @@ public class WizytaRepository {
             wizyta.setPacjent(pacjentRepo.selectById(rs.getInt("id_pacjent")));
             wizyta.setLekarz(lekarzeRepo.selectById(rs.getInt("id_lekarz")));
             wizyta.setData(rs.getDate("data"));
+            wizyta.setPacjentPrzyszedl(rs.getBoolean("przyszedl"));
 
             return wizyta;
 

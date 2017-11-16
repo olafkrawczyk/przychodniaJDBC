@@ -5,8 +5,16 @@
  */
 package com.pwrlab.przychodniajdbc;
 
+import com.pwrlab.przychodniajdbc.domain.Pacjent;
+import com.pwrlab.przychodniajdbc.domain.Wizyta;
 import java.sql.Connection;
 import com.pwrlab.przychodniajdbc.repository.PacjentRepository;
+import com.pwrlab.przychodniajdbc.repository.WizytaRepository;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.AbstractListModel;
 
 /**
  *
@@ -20,9 +28,26 @@ public class MainWindow extends javax.swing.JFrame {
     DBConnection dbHandler = DBConnection.getInstance();
     Connection connection = dbHandler.getConnection();
     PacjentRepository repo = new PacjentRepository();
+    WizytaRepository repoWiz = new WizytaRepository();
 
     public MainWindow() {
         initComponents();
+    }
+    
+    private void initList() {
+        jList1.setModel(new AbstractListModel<Wizyta>(){
+            List<Wizyta> wizyty = repoWiz.selectAll();
+         
+            @Override
+            public int getSize() {
+                return wizyty.size();
+            }
+
+            @Override
+            public Wizyta getElementAt(int index) {
+                return wizyty.get(index);
+            }
+        });
     }
 
     /**
@@ -34,7 +59,6 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        list1 = new java.awt.List();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -45,9 +69,16 @@ public class MainWindow extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 500));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jButton1.setText("Pacjent przyszedł");
 
@@ -110,6 +141,21 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        jList1.setModel(new AbstractListModel<Wizyta>(){
+            List<Wizyta> wizyty = repoWiz.selectAll();
+
+            @Override
+            public int getSize() {
+                return wizyty.size();
+            }
+
+            @Override
+            public Wizyta getElementAt(int index) {
+                return wizyty.get(index);
+            }
+        });
+        jScrollPane1.setViewportView(jList1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,8 +164,8 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(list1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -162,9 +208,10 @@ public class MainWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton12))
-                    .addComponent(list1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton12)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -205,8 +252,18 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        WizytaAdd waw = new WizytaAdd();
+        waw.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        try {
+            // TODO add your handling code here:
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -255,6 +312,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private java.awt.List list1;
+    private javax.swing.JList<Wizyta> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

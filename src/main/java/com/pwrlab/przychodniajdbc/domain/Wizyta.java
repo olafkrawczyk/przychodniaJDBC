@@ -12,14 +12,13 @@ import java.util.Date;
  * @author Olaf
  */
 public class Wizyta {
-    
+
     public static int CZAS_TRWANIA_WIZYTY = 30;
-    
+
     private int id;
     private Lekarz lekarz;
     private Pacjent pacjent;
     private Date data;
-    private int gabinetId;
     private boolean pacjentPrzyszedl;
 
     public Wizyta() {
@@ -57,14 +56,6 @@ public class Wizyta {
         this.data = data;
     }
 
-    public int getGabinetId() {
-        return gabinetId;
-    }
-
-    public void setGabinetId(int gabinetId) {
-        this.gabinetId = gabinetId;
-    }
-
     public boolean isPacjentPrzyszedl() {
         return pacjentPrzyszedl;
     }
@@ -72,7 +63,13 @@ public class Wizyta {
     public void setPacjentPrzyszedl(boolean pacjentPrzyszedl) {
         this.pacjentPrzyszedl = pacjentPrzyszedl;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return id + ", dr " + lekarz.getImie() + " " + lekarz.getNazwisko()
+                + " pok." + lekarz.getGabinet().getNumerPokoju()
+                + ", " + pacjent.getNazwisko() + " " + pacjent.getPESEL() 
+                + ", data: " + data + ", " + pacjentPrzyszedl;
+    }
+
 }

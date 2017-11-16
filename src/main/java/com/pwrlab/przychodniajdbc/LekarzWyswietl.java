@@ -9,8 +9,8 @@ import com.pwrlab.przychodniajdbc.domain.Gabinet;
 import com.pwrlab.przychodniajdbc.domain.Lekarz;
 import java.util.List;
 import javax.swing.AbstractListModel;
-import repository.GabinetRepository;
-import repository.LekarzeRepository;
+import com.pwrlab.przychodniajdbc.repository.GabinetRepository;
+import com.pwrlab.przychodniajdbc.repository.LekarzeRepository;
 
 /**
  *

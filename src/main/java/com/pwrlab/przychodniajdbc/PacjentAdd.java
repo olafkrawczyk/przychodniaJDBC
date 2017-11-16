@@ -5,7 +5,7 @@
  */
 package com.pwrlab.przychodniajdbc;
 
-import repository.PacjentRepository;
+import com.pwrlab.przychodniajdbc.repository.PacjentRepository;
 
 /**
  *

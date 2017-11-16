@@ -5,7 +5,7 @@
  */
 package com.pwrlab.przychodniajdbc;
 
-import repository.GabinetRepository;
+import com.pwrlab.przychodniajdbc.repository.GabinetRepository;
 
 /**
  *

@@ -8,7 +8,7 @@ package com.pwrlab.przychodniajdbc;
 import com.pwrlab.przychodniajdbc.domain.Gabinet;
 import java.util.List;
 import javax.swing.AbstractListModel;
-import repository.GabinetRepository;
+import com.pwrlab.przychodniajdbc.repository.GabinetRepository;
 
 /**
  *

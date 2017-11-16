@@ -82,10 +82,10 @@ public class Lekarz {
     public String toString() {
         return id + " " + imie
                 + " " + nazwisko
-                + " " + limitPrzyjec
-                + " " + gabinet.getNumerPokoju()
-                + " " + godzina_start 
-                + " " + godzina_koniec ;
+                + " limit " + limitPrzyjec
+                + " pok. " + gabinet.getNumerPokoju()
+                + " od " + godzina_start 
+                + " do " + godzina_koniec ;
     }
 
 }

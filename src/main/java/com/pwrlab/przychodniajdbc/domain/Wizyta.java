@@ -70,7 +70,7 @@ public class Wizyta {
         if (!pacjentPrzyszedl) {
             przyszedl = "nie przyszedl";
         } else {
-            przyszedl = "odbyta się";
+            przyszedl = "odbyła się";
         }
         
         return id + ", dr " + lekarz.getImie() + " " + lekarz.getNazwisko()

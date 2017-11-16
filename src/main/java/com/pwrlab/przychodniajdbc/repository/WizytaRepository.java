@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.pwrlab.przychodniajdbc.domain.Pacjent;
 import com.pwrlab.przychodniajdbc.domain.Wizyta;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class WizytaRepository {
                     .prepareStatement("INSERT INTO wizyta (id_pacjent,id_lekarz,data) VALUES (?,?,?)");
             uprs.setInt(1, pacjent.getId());
             uprs.setInt(2, lekarz.getId());
-            uprs.setDate(3, (java.sql.Date) data);
+            uprs.setDate(3, new java.sql.Date(data.getTime()));
             uprs.executeUpdate();
             return true;
 

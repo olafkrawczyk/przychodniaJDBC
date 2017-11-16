@@ -66,10 +66,17 @@ public class Wizyta {
 
     @Override
     public String toString() {
+        String przyszedl = "";
+        if (!pacjentPrzyszedl) {
+            przyszedl = "nie przyszedl";
+        } else {
+            przyszedl = "odbyta się";
+        }
+        
         return id + ", dr " + lekarz.getImie() + " " + lekarz.getNazwisko()
                 + " pok." + lekarz.getGabinet().getNumerPokoju()
                 + ", " + pacjent.getNazwisko() + " " + pacjent.getPESEL() 
-                + ", data: " + data + ", " + pacjentPrzyszedl;
+                + ", data: " + data + ", " + przyszedl;
     }
 
 }

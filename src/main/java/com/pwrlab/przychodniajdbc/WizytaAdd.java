@@ -11,7 +11,14 @@ import com.pwrlab.przychodniajdbc.domain.Pacjent;
 import com.pwrlab.przychodniajdbc.repository.PacjentRepository;
 import com.pwrlab.przychodniajdbc.repository.GabinetRepository;
 import com.pwrlab.przychodniajdbc.repository.LekarzeRepository;
+import com.pwrlab.przychodniajdbc.repository.WizytaRepository;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,6 +33,7 @@ public class WizytaAdd extends javax.swing.JFrame {
     private PacjentRepository repoPacj = new PacjentRepository();
     private GabinetRepository repoGabi = new GabinetRepository();
     private LekarzeRepository repoLek = new LekarzeRepository();
+    private WizytaRepository repoWiz = new WizytaRepository();
 
     public WizytaAdd() {
         initComponents();
@@ -163,6 +171,13 @@ public class WizytaAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date startDate = df.parse(jTextField3.getText());
+            repoWiz.insertWizyta((Pacjent)jComboBox1.getSelectedItem(), (Lekarz)jComboBox2.getSelectedItem(), startDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(WizytaAdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

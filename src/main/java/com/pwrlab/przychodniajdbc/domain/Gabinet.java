@@ -12,6 +12,32 @@ package com.pwrlab.przychodniajdbc.domain;
 public class Gabinet {
     
     private int id;
-    private int numerPokoju;
+    private String numerPokoju;
+
+    public Gabinet() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNumerPokoju() {
+        return numerPokoju;
+    }
+
+    public void setNumerPokoju(String numerPokoju) {
+        this.numerPokoju = numerPokoju;
+    }
+
+    @Override
+    public String toString() {
+        return id + " - " + numerPokoju;
+    }
+    
+    
     
 }

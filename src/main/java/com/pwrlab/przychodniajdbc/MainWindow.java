@@ -68,15 +68,30 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         jButton5.setText("Nowy lekarz");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Wyświetl lekarzy");
 
         jButton7.setText("Nowa wizyta");
 
         jButton8.setText("Nowy gabinet");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Wyświetl gabinety");
         jButton9.setToolTipText("");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("jButton12");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +172,21 @@ public class MainWindow extends javax.swing.JFrame {
         PacjentWyswietl pw = new PacjentWyswietl();
         pw.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        GabinetAdd gba = new GabinetAdd();
+        gba.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        GabinetWyswietl gbw = new GabinetWyswietl();
+        gbw.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        LekarzAdd law = new LekarzAdd();
+        law.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

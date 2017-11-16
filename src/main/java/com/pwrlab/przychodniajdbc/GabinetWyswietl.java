@@ -5,40 +5,40 @@
  */
 package com.pwrlab.przychodniajdbc;
 
-import com.pwrlab.przychodniajdbc.domain.Pacjent;
+import com.pwrlab.przychodniajdbc.domain.Gabinet;
 import java.util.List;
 import javax.swing.AbstractListModel;
-import repository.PacjentRepository;
+import repository.GabinetRepository;
 
 /**
  *
  * @author Olaf
  */
-public class PacjentWyswietl extends javax.swing.JFrame {
+public class GabinetWyswietl extends javax.swing.JFrame {
 
     /**
      * Creates new form PacjentWyswietl
      */
     
-    PacjentRepository repo = new PacjentRepository();
+    GabinetRepository repo = new GabinetRepository();
 
-    public PacjentWyswietl() {
+    public GabinetWyswietl() {
         initComponents();
         initList();
     }
 
     private void initList() {
-        jList1.setModel(new AbstractListModel<Pacjent>(){
-            List<Pacjent> pacjenci = repo.selectAll();
+        jList1.setModel(new AbstractListModel<Gabinet>(){
+            List<Gabinet> gabinety = repo.selectAll();
          
             @Override
             public int getSize() {
-                return pacjenci.size();
+                return gabinety.size();
             }
 
             @Override
-            public Pacjent getElementAt(int index) {
-                return pacjenci.get(index);
+            public Gabinet getElementAt(int index) {
+                return gabinety.get(index);
             }
         });
     }
@@ -57,20 +57,20 @@ public class PacjentWyswietl extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Pacjenci");
+        setTitle("Gabinety");
         setLocation(new java.awt.Point(400, 400));
 
-        jList1.setModel(new AbstractListModel<Pacjent>(){
-            List<Pacjent> pacjenci = repo.selectAll();
+        jList1.setModel(new AbstractListModel<Gabinet>(){
+            List<Gabinet> gabinety = repo.selectAll();
 
             @Override
             public int getSize() {
-                return pacjenci.size();
+                return gabinety.size();
             }
 
             @Override
-            public Pacjent getElementAt(int index) {
-                return pacjenci.get(index);
+            public Gabinet getElementAt(int index) {
+                return gabinety.get(index);
             }
         });
         jScrollPane1.setViewportView(jList1);
@@ -109,7 +109,7 @@ public class PacjentWyswietl extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        initList();
+       initList();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -129,27 +129,28 @@ public class PacjentWyswietl extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PacjentWyswietl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GabinetWyswietl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PacjentWyswietl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GabinetWyswietl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PacjentWyswietl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GabinetWyswietl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PacjentWyswietl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GabinetWyswietl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PacjentWyswietl().setVisible(true);
+                new GabinetWyswietl().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JList<Pacjent> jList1;
+    private javax.swing.JList<Gabinet> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -113,4 +113,27 @@ public class WizytaRepository {
             return false;
         }
     }
+    
+    public List<Wizyta> selectByLekarzAndDate(int lekarz_id, Date data) {
+        try {
+
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM wizyta WHERE id_lekarz = ? AND data = ?");
+            LinkedList<Wizyta> result = new LinkedList<>();
+            while (rs.next()) {
+                Wizyta wizyta = new Wizyta();
+                wizyta.setId(rs.getInt("id"));
+                wizyta.setPacjent(pacjentRepo.selectById(rs.getInt("id_pacjent")));
+                wizyta.setLekarz(lekarzeRepo.selectById(rs.getInt("id_lekarz")));
+                wizyta.setData(rs.getDate("data"));
+                wizyta.setPacjentPrzyszedl(rs.getBoolean("przyszedl"));
+                result.add(wizyta);
+            }
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(WizytaRepository.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
 }
